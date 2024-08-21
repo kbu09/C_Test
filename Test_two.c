@@ -178,7 +178,6 @@ int main() {
 19] Explain what a pointer to a pointer is in C and give an example.
 Ans. =
 #include <stdio.h>
-
 int main() {
     int value = 42;            
     int *ptr = &value;         
