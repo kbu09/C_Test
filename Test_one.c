@@ -78,7 +78,6 @@ int main()
 11] Explain the difference between ++x and x++ in C with an example.
 ANS =
 #include <stdio.h>
-
 int main()
 {
     int x = 5;
@@ -106,13 +105,53 @@ ANS = b) 10
 13] Write a program in C that reverses a given string without using
 any built-in functions.
 
+ANS =
+#include <stdio.h>
+int main()
+{
+    char str[100];
+    int length = 0, i;
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    while (str[length] != '\0' && str[length] != '\n')
+    {
+        length++;
+    }
+    str[length] = '\0';
+    for (i = 0; i < length / 2; i++)
+    {
+        char temp = str[i];
+        str[i] = str[length - i - 1];
+        str[length - i - 1] = temp;
+    }
+    printf("Reversed String: %s\n", str);
 
+    return 0;
+}
 
 14] What is a recursive function? Write a C program to calculate the
 factorial of a number using recursion.
-
-
-
+ANS =
+#include <stdio.h>
+int factorial(int n)
+{
+    if (n == 0)
+    {
+        return 1;
+    }
+    else
+    {
+        return n * factorial(n - 1);
+    }
+}
+int main()
+{
+    int number;
+    printf("Enter a number: ");
+    scanf("%d", &number);
+    printf("Factorial of %d is %d\n", number, factorial(number));
+    return 0;
+}
 
 15] Consider the following code snippet. What will be the value of
 result after execution?
@@ -155,8 +194,41 @@ int main()
 17] Create a function in C that checks if a given string is a
 palindrome.
 
+Ans =
+#include <stdio.h>
+#include <string.h>
+int isPalindrome(char str[])
+{
+    int start = 0;
+    int end = strlen(str) - 1;
 
-
+    while (start < end)
+    {
+        if (str[start] != str[end])
+        {
+            return 0;
+        }
+        start++;
+        end--;
+    }
+    return 1;
+}
+int main()
+{
+    char str[100];
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0';
+    if (isPalindrome(str))
+    {
+        printf("\"%s\" is a palindrome.\n", str);
+    }
+    else
+    {
+        printf("\"%s\" is not a palindrome.\n", str);
+    }
+    return 0;
+}
 
 18] Write a C program to implement a simple calculator using
 switch-case statements that performs addition, subtraction,
@@ -201,9 +273,37 @@ return 0;
 
 19] Develop a C program that reverses the digits of an integer number
 entered by the user.
+ANS =
+#include <stdio.h>
+int main()
+{
+    int number, reversedNumber = 0;
 
-
+    printf("Enter an integer: ");
+    scanf("%d", &number);
+    while (number != 0)
+    {
+        reversedNumber = reversedNumber * 10 + number % 10;
+        number = number / 10;
+    }
+    printf("Reversed Number: %d\n", reversedNumber);
+    return 0;
+}
 
 20] Write a C program that uses a recursive function to find the
 Greatest Common Divisor (GCD)
-of two numbers.
+of two numbers.Ans =
+#include <stdio.h>
+    int gcd(int a, int b)
+{
+    return (b == 0) ? a : gcd(b, a % b);
+}
+int main()
+{
+    int num1, num2;
+    printf("Enter two integers: ");
+    scanf("%d %d", &num1, &num2);
+    printf("GCD of %d and %d is %d\n", num1, num2, gcd(num1, num2));
+
+    return 0;
+}
